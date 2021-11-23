@@ -1,25 +1,9 @@
-// https://umijs.org/config/
 import { defineConfig } from 'umi';
-import defaultSettings from './defaultSettings';
-import proxy from './proxy';
 import routes from './routes';
-const { REACT_APP_ENV } = process.env;
+import proxy from './proxy';
 export default defineConfig({
-  qiankun: {
-    master: {
-      // 注册子应用信息
-      apps: [
-        {
-          name: 'app1', // 唯一 id
-          entry: '//localhost:8001', // html entry
-        },
-        {
-          name: 'app2', // 唯一 id
-          entry: '//localhost:8002', // html entry
-        },
-      ],
-      sandbox: { experimentalStyleIsolation: true },
-    },
+  nodeModulesTransform: {
+    type: 'none',
   },
   hash: true,
   antd: {},
@@ -28,40 +12,24 @@ export default defineConfig({
   },
   dva: {
     hmr: true,
+    lazyLoad: true,
   },
-  layout: {
-    // https://umijs.org/zh-CN/plugins/plugin-layout
-    locale: true,
-    siderWidth: 208,
-    ...defaultSettings,
+  targets: {
+    ie: 9,
   },
+  // theme: {
+  //   "primary-color": "#1890ff",
+  // },
+  publicPath: process.env.NODE_ENV === 'production' ? '/' : '/',
   dynamicImport: {
     loading: '@ant-design/pro-layout/es/PageLoading',
   },
-  targets: {
-    ie: 11,
-  },
-  // umi routes: https://umijs.org/docs/routing
-  routes,
-  // Theme for antd: https://ant.design/docs/react/customize-theme-cn
-  theme: {
-    'primary-color': defaultSettings.primaryColor,
-  },
-  // esbuild is father build tools
-  // https://umijs.org/plugins/plugin-esbuild
-  esbuild: {},
-  title: false,
-  ignoreMomentLocale: true,
-  proxy: proxy[REACT_APP_ENV || 'dev'],
-  manifest: {
-    basePath: '/',
-  },
-  // Fast Refresh 热更新
+  routes, //路由
+  proxy, //接口代理
   fastRefresh: {},
-  nodeModulesTransform: {
-    type: 'none',
-  },
   mfsu: {},
+  ignoreMomentLocale: true,
   webpack5: {},
-  exportStatic: {},
+  autoprefixer: {},
+  // plugin: [],//配置额外的 umi 插件
 });

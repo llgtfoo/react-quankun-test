@@ -1,0 +1,47 @@
+// @import '~antd/es/style/themes/default.less';
+// @import '~antd/dist/antd.variable.less';
+#watermark > .ant-layout {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+}
+.layout-header {
+  padding: 0;
+  z-index: 100000000000;
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  .logo {
+    float: left;
+    width: 230px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    .iconfont {
+      font-size: 60px !important;
+      color: #fff;
+    }
+    span {
+      font-size: 30px;
+      color: #fff;
+      margin-left: 20px;
+    }
+  }
+  .nav-menu-main {
+    flex: 1;
+  }
+}
+
+.site-layout-background {
+  background: #fff;
+}
+.menuLoading {
+  width: 100%;
+  height: calc(100vh - 0px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

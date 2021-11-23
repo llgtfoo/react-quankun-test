@@ -1,41 +1,35 @@
+import routerList from '../src/pages/index.js';
+
 export default [
   {
-    path: '/user',
-    layout: false,
+    path: '/',
+    component: '@/layouts/BlankLayout.jsx',
     routes: [
       {
-        path: '/user',
+        name: 'login',
+        path: '/login',
+        component: '@/pages/Login/index.jsx',
+      },
+      {
+        path: '/',
+        component: '@/layouts/index.jsx',
+        // wrappers: ['@/permissions/permission'], //菜单权限访问
         routes: [
+          { path: '/', redirect: '/home' },
           {
-            name: 'login',
-            path: '/user/login',
-            component: './Login/index',
+            path: '/home',
+            component: '@/pages/home/index.jsx',
+            meta: { title: '首页' },
+          },
+          ...routerList, //页面路由
+          {
+            component: '@/pages/notFound/404.jsx',
           },
         ],
       },
     ],
   },
   {
-    path: '/Welcome',
-    name: '欢迎',
-    icon: 'smile',
-    component: './Welcome/index',
-  },
-  {
-    path: '/app1',
-    microApp: 'app1',
-    name: '子应用1',
-  },
-  {
-    path: '/app2',
-    microApp: 'app2',
-    name: '子应用2',
-  },
-  {
-    path: '/',
-    redirect: '/Welcome',
-  },
-  {
-    component: './404',
+    component: '@/pages/notFound/404.jsx',
   },
 ];

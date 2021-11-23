@@ -6,7 +6,7 @@ const waitTime = (time = 100) => {
   });
 };
 
-let access = '';
+let access = null;
 
 //获取用户状态
 const getAccess = () => {
@@ -26,16 +26,23 @@ export default {
       });
       access = 'admin';
       return;
-    }
-
-    if (password === '123456' && username === 'user') {
+    } else if (password === '123456' && username === 'user') {
       res.send({
         status: 'ok',
         type,
         currentAuthority: 'user',
-        token: 'brear lkkdkdkfkkfkffkfkfk',
+        token: 'brear lkkdkdkfkkfqkffkfkfk',
       });
       access = 'user';
+      return;
+    } else {
+      res.send({
+        data: {
+          status: 'noOk',
+          message: '用户名或密码错误！',
+        },
+        success: true,
+      });
       return;
     }
   },
@@ -56,7 +63,8 @@ export default {
       success: true,
       data: {
         userName: 'llgtfoo',
-        avatar: 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
+        avatar:
+          'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
         userId: '00000001',
         email: 'llgtfoo@163.com',
         access: getAccess(),
@@ -66,7 +74,7 @@ export default {
   'POST /api/login/outLogin': (req, res) => {
     access = '';
     res.send({
-      data: {},
+      data: { message: '退出登录!' },
       success: true,
     });
   },

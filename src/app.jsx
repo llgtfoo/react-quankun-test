@@ -1,12 +1,9 @@
-import { layout } from '@/layout/';
 import { PageLoading } from '@ant-design/pro-layout';
 import { history } from 'umi';
 import { currentUser as queryCurrentUser } from './services/login/index';
-import { request } from './utils/request';
 
 const isDev = process.env.NODE_ENV === 'development';
-const loginPath = '/user/login';
-/** 获取用户信息比较慢的时候会展示一个 loading */
+const loginPath = '/login';
 
 export const initialStateConfig = {
   loading: <PageLoading />,
@@ -25,8 +22,8 @@ export async function getInitialState() {
     }
 
     return undefined;
-  }; // 如果是登录页面，不执行
-
+  };
+  //验证用户是不是登录状态，刷新执行
   if (history.location.pathname !== loginPath) {
     const currentUser = await fetchUserInfo();
     return {
@@ -35,11 +32,12 @@ export async function getInitialState() {
       settings: {},
     };
   }
-
   return {
     fetchUserInfo,
     settings: {},
   };
 }
-
-export { layout, request };
+//渲染之前做权限校验，
+export function render(oldRender) {
+  oldRender();
+}

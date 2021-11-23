@@ -1,63 +1,47 @@
-@import '~antd/es/style/themes/default.less';
-@import './assets/css/scroll.less';
-html,
+// @import '~antd/dist/antd.variable.less';
 body,
+html,
 #root {
-  // height: 100%;
+  width: 100%;
+  /* height: 100%; */
+  height: max-content;
+  box-sizing: border-box;
+  background-color: #f0f2f5;
+  /* overflow-x: hidden; */
 }
-.ant-pro-fixed-header{
-  z-index: 999!important;
-}
-.ant-pro-basicLayout-content {
-    position: relative;
-    margin: 0px;
-}
-.colorWeak {
-  filter: invert(80%);
-}
-
-.ant-layout {
+#watermark {
   min-height: 100vh;
 }
-.ant-pro-sider.ant-layout-sider.ant-pro-sider-fixed {
-  left: unset;
+* {
+  padding: 0px;
+  margin: 0px;
 }
-
-canvas {
-  display: block;
-}
-
-body {
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 ul,
-ol {
+li {
   list-style: none;
 }
-
-@media (max-width: @screen-xs) {
-  .ant-table {
-    width: 100%;
-    overflow-x: auto;
-    &-thead > tr,
-    &-tbody > tr {
-      > th,
-      > td {
-        white-space: pre;
-        > span {
-          display: block;
-        }
-      }
-    }
+.iconfont {
+  font-size: 16px !important;
+}
+.ant-table-body {
+  overflow: auto !important;
+}
+.checkbox-list {
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 5px !important;
+  background-color: #fff;
+  .ant-dropdown-menu-title-content {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .ant-checkbox-wrapper {
+    margin-left: 8px !important;
   }
 }
-
-// Compatible with IE11
-@media screen and(-ms-high-contrast: active), (-ms-high-contrast: none) {
-  body .ant-design-pro > .ant-layout {
-    min-height: 100vh;
-  }
+.ant-empty {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
