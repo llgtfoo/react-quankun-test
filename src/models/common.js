@@ -1,4 +1,5 @@
 import { fetchMenulist } from '@/services/common/index';
+import data from './data.js';
 export default {
   namespace: 'common',
   state: {
@@ -6,15 +7,15 @@ export default {
     // siderMenu: [], //侧边菜单
     menuLoading: false,
   },
-  // 初始化调用
-  subscriptions: {
-    setup({ dispatch, history }) {
-      // 监听路有变化
-      history.listen(({ pathname }) => {
-        console.log(pathname, 'common');
-      });
-    },
-  },
+  // // 初始化调用
+  // subscriptions: {
+  //   setup({ dispatch, history }) {
+  //     // 监听路有变化
+  //     // history.listen(({ pathname }) => {
+  //     //   console.log(pathname, 'common')
+  //     // })
+  //   },
+  // },
 
   effects: {
     // 异步改变state中menuList
@@ -24,7 +25,7 @@ export default {
       const result = yield call(fetchMenulist);
       if (result.success) {
         //   put 触发改变reducers中方法action-setMenuList
-        yield put({ type: 'setMenuList', data: result.data });
+        yield put({ type: 'setMenuList', data: data });
         yield put({ type: 'setLoading', data: false });
       }
     },

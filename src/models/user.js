@@ -2,9 +2,9 @@
  * @Description:用户数据
  * @Author: llgtfoo
  * @Date: 2021-11-23 15:41:01
- * @LastEditTime: 2021-11-23 16:06:55
+ * @LastEditTime: 2021-11-24 19:02:48
  * @LastEditors: llgtfoo
- * @FilePath: \react-tpl-umi\src\models\user.js
+ * @FilePath: \react-quankun-test\src\models\user.js
  */
 export default {
   namespace: 'user',
@@ -31,12 +31,12 @@ export default {
       yield put({ type: 'setUserInfo', data: currentMenu });
     },
   },
-  subscriptions: {
-    setup({ dispatch, history }) {
-      // 监听路有变化
-      history.listen(({ pathname }) => {
-        // console.log(pathname, 'common')
-      });
-    },
-  },
+  // subscriptions: {
+  //   setup({ dispatch, history }) {
+  //     // 监听路有变化
+  //     // history.listen(({ pathname }) => {
+  //     //   // console.log(pathname, 'common')
+  //     // });
+  //   },
+  // },
 };

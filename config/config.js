@@ -10,6 +10,9 @@ export default defineConfig({
   history: {
     type: 'hash',
   },
+  qiankun: {
+    slave: {},
+  },
   dva: {
     hmr: true,
     lazyLoad: true,
@@ -27,7 +30,7 @@ export default defineConfig({
   routes, //路由
   proxy, //接口代理
   fastRefresh: {},
-  mfsu: {},
+  // mfsu: {},
   ignoreMomentLocale: true,
   webpack5: {},
   autoprefixer: {},

@@ -32,10 +32,12 @@ class Layouts extends Component {
     const { menuList, children, menuLoading } = this.props;
     return (
       <WaterMark
+        className="watermark"
         content="UmiJS 项目模板"
         globalAlpha="0.15"
         width="400"
         height="300"
+        style={{ height: '100%' }}
       >
         <Layout>
           {menuLoading ? (
