@@ -3,7 +3,7 @@ export default {
   namespace: 'common',
   state: {
     menuList: [], //菜单集合
-    siderMenu: [], //侧边菜单
+    // siderMenu: [], //侧边菜单
     menuLoading: false,
   },
   // 初始化调用
@@ -28,16 +28,9 @@ export default {
         yield put({ type: 'setLoading', data: false });
       }
     },
-    *setSiderMenus({ payload: { currentMenu } }, { call, put }) {
-      yield put({ type: 'setSiderMenu', data: currentMenu });
-    },
   },
 
   reducers: {
-    // 改变state中menuList
-    setSiderMenu(state, action) {
-      return { ...state, siderMenu: action.data };
-    },
     // 改变state中menuList
     setMenuList(state, action) {
       return { ...state, menuList: action.data };
