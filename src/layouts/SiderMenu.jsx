@@ -23,6 +23,7 @@ export default class SiderMenu extends Component {
       openKeys: [], //展开
       // activekeys: '', //tab默认选中项
       tabLists: [],
+      refresh: true, //刷新当前页
     };
   }
   componentDidMount() {
@@ -133,12 +134,22 @@ export default class SiderMenu extends Component {
           tabLists: [this.currentSelectedMenu],
         };
       });
-    } else if (key === 'refresh ') {
+    } else if (key === 'refresh') {
+      this.setState(
+        (state, props) => {
+          return {
+            refresh: false,
+          };
+        },
+        () => {
+          this.setState({ refresh: true });
+        },
+      );
     }
   };
   render() {
     console.log(this.props);
-    const { collapsed, openKeys, tabLists } = this.state;
+    const { collapsed, openKeys, tabLists, refresh } = this.state;
     const { children, siderMenu } = this.props;
     const selectedKeys = [history.location.pathname]; //选中
     const activekeys = history.location.pathname; //选中
@@ -227,7 +238,7 @@ export default class SiderMenu extends Component {
               position: 'relative',
             }}
           >
-            {siderMenu.length > 0 ? children : ''}
+            {siderMenu.length > 0 && refresh ? children : ''}
           </Content>
         </Layout>
       </Layout>
