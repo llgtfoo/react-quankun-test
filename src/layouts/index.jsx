@@ -31,24 +31,23 @@ class Layouts extends Component {
   render() {
     const { menuList, children, menuLoading } = this.props;
     return (
-      <WaterMark
-        className="watermark"
-        content="UmiJS 项目模板"
-        globalAlpha="0.15"
-        width="400"
-        height="300"
-        style={{ height: '100%' }}
-      >
-        <Layout>
-          {menuLoading ? (
-            <div className="menuLoading">
-              <Spin size="large" />
-            </div>
-          ) : (
-            <SiderMenu children={children} siderMenu={menuList}></SiderMenu>
-          )}
-        </Layout>
-      </WaterMark>
+      // <WaterMark
+      //   className="watermark"
+      //   content="UmiJS 项目模板"
+      //   globalAlpha="0.15"
+      //   width="400"
+      //   height="300"
+      // >
+      <Layout>
+        {menuLoading ? (
+          <div className="menuLoading">
+            <Spin size="large" />
+          </div>
+        ) : (
+          <SiderMenu children={children} siderMenu={menuList}></SiderMenu>
+        )}
+      </Layout>
+      // </WaterMark>
     );
   }
 }
