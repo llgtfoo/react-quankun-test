@@ -17,7 +17,8 @@ export default class SiderMenu extends Component {
     super(props);
     this.currentSelectedMenu = {}; //父级展开项
     this.unlisten = null;
-    this.rootSubmenuKeys = this.props.siderMenu.map((v) => v.url); //根菜单集合
+    this.rootSubmenuKeys =
+      this.props.siderMenu && this.props.siderMenu.map((v) => v.url); //根菜单集合
     this.state = {
       collapsed: false, //菜单收缩
       openKeys: [], //展开
@@ -49,7 +50,10 @@ export default class SiderMenu extends Component {
         }
 
         const target = this.rootSubmenuKeys.filter((v) => {
-          return this.currentSelectedMenu.parentUrl.includes(v);
+          return (
+            this.currentSelectedMenu.parentUrl &&
+            this.currentSelectedMenu.parentUrl.includes(v)
+          );
         });
         return {
           tabLists: array, //标签页数据
@@ -61,6 +65,7 @@ export default class SiderMenu extends Component {
   componentWillUnmount() {
     if (this.unlisten) {
       this.unlisten();
+      this.currentSelectedMenu = {};
     }
   }
   //递归获取子菜单父级展开项
@@ -238,7 +243,7 @@ export default class SiderMenu extends Component {
               position: 'relative',
             }}
           >
-            {siderMenu.length > 0 && refresh ? children : ''}
+            {siderMenu && siderMenu.length > 0 && refresh ? children : ''}
           </Content>
         </Layout>
       </Layout>
@@ -248,29 +253,32 @@ export default class SiderMenu extends Component {
 
 //菜单递归
 const getMenuNodes = (data) => {
-  return data.map((item) => {
-    if (!item.children) {
-      return (
-        <Menu.Item
-          key={item.url}
-          llgtfoo={item.url}
-          icon={<i className={'icon iconfont' + ' ' + item.icon}></i>}
-        >
-          {item.title}
-        </Menu.Item>
-      );
-    } else {
-      return (
-        <SubMenu
-          key={item.url}
-          icon={<i className={'icon iconfont' + ' ' + item.icon}></i>}
-          title={item.title}
-          llgtfoo={item.url}
-        >
-          {getMenuNodes(item.children)}
-          {/* 递归调用，渲染二级列表 */}
-        </SubMenu>
-      );
-    }
-  });
+  return (
+    data &&
+    data.map((item) => {
+      if (!item.children) {
+        return (
+          <Menu.Item
+            key={item.url}
+            llgtfoo={item.url}
+            icon={<i className={'icon iconfont' + ' ' + item.icon}></i>}
+          >
+            {item.title}
+          </Menu.Item>
+        );
+      } else {
+        return (
+          <SubMenu
+            key={item.url}
+            icon={<i className={'icon iconfont' + ' ' + item.icon}></i>}
+            title={item.title}
+            llgtfoo={item.url}
+          >
+            {getMenuNodes(item.children)}
+            {/* 递归调用，渲染二级列表 */}
+          </SubMenu>
+        );
+      }
+    })
+  );
 };
