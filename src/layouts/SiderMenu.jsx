@@ -153,7 +153,7 @@ export default class SiderMenu extends Component {
     }
   };
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     const { collapsed, openKeys, tabLists, refresh } = this.state;
     const { children, siderMenu } = this.props;
     const selectedKeys = [history.location.pathname]; //选中
