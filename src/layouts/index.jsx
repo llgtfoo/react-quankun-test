@@ -38,7 +38,7 @@ class Layouts extends Component {
       //   width="400"
       //   height="300"
       // >
-      <Layout style={{ height: '100%' }}>
+      <Layout>
         {menuLoading ? (
           <div className="menuLoading">
             <Spin size="large" />

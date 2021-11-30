@@ -2,7 +2,7 @@
  * @Description:用户数据
  * @Author: llgtfoo
  * @Date: 2021-11-23 15:41:01
- * @LastEditTime: 2021-11-24 19:02:48
+ * @LastEditTime: 2021-11-30 11:05:36
  * @LastEditors: llgtfoo
  * @FilePath: \react-quankun-test\src\models\user.js
  */
@@ -27,7 +27,7 @@ export default {
     },
   },
   effects: {
-    *fetchUser({ payload: { currentMenu } }, { call, put }) {
+    *fetchUser({ payload: currentMenu }, { call, put }) {
       yield put({ type: 'setUserInfo', data: currentMenu });
     },
   },

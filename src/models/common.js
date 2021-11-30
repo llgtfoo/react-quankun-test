@@ -1,5 +1,5 @@
 import { fetchMenulist } from '@/services/common/index';
-import data from './data.js';
+import data from '../../mock/data.js';
 export default {
   namespace: 'common',
   state: {

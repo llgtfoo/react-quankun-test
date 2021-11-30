@@ -1,7 +1,8 @@
 import { PageLoading } from '@ant-design/pro-layout';
-import { history } from 'umi';
+import { history, getDvaApp } from 'umi';
 import { currentUser as queryCurrentUser } from './services/login/index';
-
+import action from '@/models/GlobalState.js'; //引入子应用中创建的action.js
+import user from './models/user.js';
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/login';
 
@@ -47,7 +48,18 @@ export const qiankun = {
   },
   // 应用 render 之前触发
   async mount(props) {
-    console.log('app1 mount', props);
+    props.onGlobalStateChange((state, prev) => {
+      action.setActions(props);
+      if (getDvaApp()) {
+        getDvaApp()._store.dispatch({
+          type: 'user/fetchUser',
+          payload: state,
+        });
+      } else {
+        user.state = state;
+      }
+      // props.setGlobalState(state);
+    }, true);
   },
   // 应用卸载之后触发
   async unmount(props) {
